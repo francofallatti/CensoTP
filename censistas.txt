@@ -1,0 +1,10 @@
+ana
+/FotosCensistas/ana.jpg
+juan
+/FotosCensistas/juan.jpg
+mirtha
+/FotosCensistas/mirtha.jpg
+pedro
+/FotosCensistas/pedro.jpg
+raul
+/FotosCensistas/raul.jpg

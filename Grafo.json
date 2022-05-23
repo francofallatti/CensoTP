@@ -1,0 +1,140 @@
+{
+  "LenghMatriz":13,
+  "Coordenadas": [
+   {
+     "Vertice": 1,
+     "Latitud": "-34.537375",
+     "Logitud": "-58.740924"
+   },
+   {
+     "Vertice": 2,
+     "Latitud": "-34.536730",
+     "Logitud": "-58.740186"
+   },
+   {
+     "Vertice": 3,
+     "Latitud": "-34.535985",
+     "Logitud": "-58.739405"
+   },
+   {
+     "Vertice": 4,
+     "Latitud": "-34.535230",
+     "Logitud": "-58.738540"
+   },
+   {
+     "Vertice": 5,
+     "Latitud": "-34.534541",
+     "Logitud": "-58.737838"
+   },
+   {
+     "Vertice": 6,
+     "Latitud": "-34.533667",
+     "Logitud": "-58.736975"
+   },
+   {
+     "Vertice": 7,
+     "Latitud": "-34.532960",
+     "Logitud": "-58.737962"
+   },
+   {
+     "Vertice": 8,
+     "Latitud": "-34.533801",
+     "Logitud": "-58.738792"
+   },
+   {
+     "Vertice": 9,
+     "Latitud": "-34.534482",
+     "Logitud": "-58.739607"
+   },
+   {
+     "Vertice": 10,
+     "Latitud": "-34.535221",
+     "Logitud": "-58.740412"
+   },
+   {
+     "Vertice": 11,
+     "Latitud": "-34.535974",
+     "Logitud": "-58.741225"
+   },
+   {
+     "Vertice": 12,
+     "Latitud": "-34.536626",
+     "Logitud": "-58.741924"
+   },
+   {
+     "Vertice": 13,
+     "Latitud": "-34.535882",
+     "Logitud": "-58.742930"
+   }   
+  ],
+  "agregarVertice":[
+    {
+      "vert1":1,
+      "vert2":2
+    },
+    {
+      "vert1":1,
+      "vert2":12
+    },
+    {
+      "vert1":2,
+      "vert2":3
+    },
+    {
+      "vert1":2,
+      "vert2":11
+    },
+    {
+      "vert1":3,
+      "vert2":4
+    },
+    {
+      "vert1":3,
+      "vert2":10
+    },
+    {
+      "vert1":4,
+      "vert2":5
+    },
+    {
+      "vert1":4,
+      "vert2":9
+    },
+    {
+      "vert1":5,
+      "vert2":6
+    },
+    {
+      "vert1":5,
+      "vert2":8
+    },
+    {
+      "vert1":6,
+      "vert2":7
+    },
+    {
+      "vert1":7,
+      "vert2":8
+    },
+    {
+      "vert1":8,
+      "vert2":9
+    },
+    {
+      "vert1":9,
+      "vert2":10
+    },
+    {
+      "vert1":10,
+      "vert2":11
+    },
+    {
+      "vert1":11,
+      "vert2":12
+    },
+    {
+      "vert1":12,
+      "vert2":13
+    }
+  ]
+}

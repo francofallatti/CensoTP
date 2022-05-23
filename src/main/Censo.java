@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+//import com.google.gson.Gson;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.*;
+
 public class Censo {
 	private Grafo _radioCensal;
 	private ArrayList<Censista> _censitas;
@@ -50,4 +55,31 @@ public class Censo {
 		}
 		return s;
 	}
+	/*
+	public static GrafoJSON leerJSON() {
+		Gson gson = new Gson();
+		GrafoJSON = null;
+		
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("Grafo.json"));
+			ret = gson.fromJson(br, GrafoJSON.class);
+		}catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return ret;
+		
+	}
+	
+	public void GrafoJSON() {
+		// parsing file "JSONExample.json"
+        try {
+			Object ob = new JSONParser().parse(new FileReader("JSONFile.json"));
+			 JSONObject js = (JSONObject) ob;
+			// String verticeString = json.getJSONObject("Coordenadas");
+			 _radioCensal = new Grafo(js.get("LenghMatriz"));
+		} catch (IOException | ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}*/
 }

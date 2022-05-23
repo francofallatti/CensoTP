@@ -1,0 +1,93 @@
+[
+  {
+    "Vertice": {
+		"numero": 1,
+		"Latitud": -34.537375, 
+		"Logitud": -58.740924
+     }
+  },
+  {
+     "Vertice": {
+		"numero": 2,
+		"Latitud": -34.536730,
+		"Logitud": -58.740186
+     }
+  },
+   {
+     "Vertice": {
+		"numero":3,
+		"Latitud": -34.535985,
+		"Logitud": -58.739405
+	 }
+   },
+   {
+     "Vertice": {
+		"numero":4,
+		"Latitud": -34.535230,
+		"Logitud": -58.738540
+	 }
+   },
+   {
+     "Vertice": {
+		"numero":5,
+		"Latitud": -34.534541,
+		"Logitud": -58.737838
+	 }
+   },
+   {
+     "Vertice":{
+		"numero": 6,
+		"Latitud": -34.533667,
+		"Logitud": -58.736975
+	 }
+   },
+   {
+     "Vertice": {
+		"numero":7,
+		"Latitud": -34.532960,
+		"Logitud": -58.737962
+	 }
+   },
+   {
+     "Vertice": {
+		"numero":8,
+		"Latitud": -34.533801,
+		"Logitud": -58.738792
+	 }
+   },
+   {
+     "Vertice": {
+		"numero":9,
+		"Latitud": -34.534482,
+		"Logitud": -58.739607
+	 }
+   },
+   {
+     "Vertice": {
+		"numero":10,
+		"Latitud": -34.535221,
+		"Logitud": -58.740412
+	 }
+   },
+   {
+     "Vertice": {
+		"numero":11,
+		"Latitud": -34.535974,
+		"Logitud": -58.741225
+	 }
+   },
+   {
+     "Vertice": {
+		"numero":12,
+		"Latitud": -34.536626,
+		"Logitud": -58.741924
+	 }
+   },
+   {
+     "Vertice": {
+		"numero":13,
+		"Latitud": -34.535882,
+		"Logitud": -58.742930
+	 }
+   }  
+]

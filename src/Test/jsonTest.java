@@ -13,7 +13,7 @@ import org.junit.Test;
 
 
 public class jsonTest {
-	/**
+	
 	@Test
 	public void SetUp() {
 		JSONParser jsonParser = new JSONParser();
@@ -38,12 +38,12 @@ public class jsonTest {
 		System.out.println("Dentro de vertice:" + info);
 		Long numero= (Long) info.get("numero");
 		System.out.println("Numero de vertice: "+numero);
-		double latitud= (double) info.get("Latitud");
+		double latitud= (Double) info.get("Latitud");
 		System.out.println("Latitud: " +latitud);
-		double longitud= (double) info.get("Logitud");
+		double longitud= (Double) info.get("Logitud");
 		System.out.println("Logitud: " +longitud);		
-	}*/
-	
+	}
+	/**
 	@Test
 	public void GrafoSetUp() {
 		JSONParser jsonParser = new JSONParser();
@@ -69,6 +69,6 @@ public class jsonTest {
 		Long vert2= (Long) jsonObject.get("vert2");
 		System.out.println("vertice j : "+vert2);
 	}
-	
+	*/
 
 }

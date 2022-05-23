@@ -5,20 +5,21 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-
-//import com.google.gson.Gson;
+import java.util.HashMap;
+import java.util.Map;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.*;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class Censo {
 	private Grafo _radioCensal;
 	private ArrayList<Censista> _censitas;
+	private Map<Long, Tupla<Double, Double>> _coodenadas;
 	
 	public Censo() {
 		agregarCensista();
+		_coodenadas = new HashMap<>();
 	}
 	
 	private void agregarCensista() {
@@ -55,31 +56,52 @@ public class Censo {
 		}
 		return s;
 	}
-	/*
-	public static GrafoJSON leerJSON() {
-		Gson gson = new Gson();
-		GrafoJSON = null;
-		
-		try {
-			BufferedReader br = new BufferedReader(new FileReader("Grafo.json"));
-			ret = gson.fromJson(br, GrafoJSON.class);
-		}catch (FileNotFoundException e) {
+	
+	public void agregarCoordenadasJSON() {
+		JSONParser jsonParser = new JSONParser();
+		try (FileReader resder = new FileReader("Coordenadas.json")){
+			Object obj = jsonParser.parse(resder);
+			JSONArray CoordenadasList = (JSONArray) obj;
+			for(Object jsonObject : CoordenadasList ) {
+				agregarCoordenadas((JSONObject) jsonObject);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}catch(ParseException e) {
 			e.printStackTrace();
 		}
-		return ret;
-		
+	}
+	private void agregarCoordenadas(JSONObject jsonObject) {
+		JSONObject info = (JSONObject) jsonObject.get("Vertice");
+		Long numero= (Long) info.get("numero");
+		double latitud= (Double) info.get("Latitud");
+		double longitud= (Double) info.get("Logitud");
+		Tupla<Double, Double> coord = new Tupla<Double, Double>(latitud, longitud);
+		_coodenadas.put(numero, coord);
 	}
 	
-	public void GrafoJSON() {
-		// parsing file "JSONExample.json"
-        try {
-			Object ob = new JSONParser().parse(new FileReader("JSONFile.json"));
-			 JSONObject js = (JSONObject) ob;
-			// String verticeString = json.getJSONObject("Coordenadas");
-			 _radioCensal = new Grafo(js.get("LenghMatriz"));
-		} catch (IOException | ParseException e) {
-			// TODO Auto-generated catch block
+	public void AgregarAristasJSON() {
+		_radioCensal = new Grafo(13);
+		JSONParser jsonParser = new JSONParser();
+		try (FileReader resder = new FileReader("Grafo.json")){
+			Object obj = jsonParser.parse(resder);
+			JSONArray grafoList = (JSONArray) obj;
+			for(Object jsonObject : grafoList ) {
+				GrafoInfo((JSONObject) jsonObject);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}catch(ParseException e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
+	private void GrafoInfo(JSONObject jsonObject) {
+		Long vert1= (Long) jsonObject.get("vert1");
+		Long vert2= (Long) jsonObject.get("vert2");
+		_radioCensal.agregarArista(vert1.intValue(), vert2.intValue());
+	}
 }

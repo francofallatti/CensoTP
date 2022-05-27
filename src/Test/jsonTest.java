@@ -3,6 +3,8 @@ package Test;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
@@ -11,11 +13,14 @@ import org.json.simple.parser.ParseException;
 import org.junit.Before;
 import org.junit.Test;
 
+import main.Tupla;
+
 
 public class jsonTest {
-	
+	private static Map<Long, Tupla<Double, Double>> _coodenadas;
 	@Test
 	public void SetUp() {
+		_coodenadas = new HashMap<>();
 		JSONParser jsonParser = new JSONParser();
 		try (FileReader resder = new FileReader("Coordenadas.json")){
 			Object obj = jsonParser.parse(resder);
@@ -41,7 +46,10 @@ public class jsonTest {
 		double latitud= (Double) info.get("Latitud");
 		System.out.println("Latitud: " +latitud);
 		double longitud= (Double) info.get("Logitud");
-		System.out.println("Logitud: " +longitud);		
+		System.out.println("Logitud: " +longitud);	
+		Tupla<Double, Double> coord = new Tupla<Double, Double>(latitud, longitud);
+		_coodenadas.put(numero, coord);
+		System.out.println(_coodenadas + " map");
 	}
 	/**
 	@Test

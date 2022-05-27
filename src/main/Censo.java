@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -15,11 +17,15 @@ import org.json.simple.parser.ParseException;
 public class Censo {
 	private Grafo _radioCensal;
 	private ArrayList<Censista> _censitas;
-	private Map<Long, Tupla<Double, Double>> _coodenadas;
+	private static Map<Long, Tupla<Double, Double>> _coodenadas;
 	
+	
+
 	public Censo() {
 		agregarCensista();
 		_coodenadas = new HashMap<>();
+		agregarCoordenadasJSON();
+		AgregarAristasJSON();
 	}
 	
 	private void agregarCensista() {
@@ -62,6 +68,7 @@ public class Censo {
 		try (FileReader resder = new FileReader("Coordenadas.json")){
 			Object obj = jsonParser.parse(resder);
 			JSONArray CoordenadasList = (JSONArray) obj;
+			_radioCensal = new Grafo(CoordenadasList.size()+1);
 			for(Object jsonObject : CoordenadasList ) {
 				agregarCoordenadas((JSONObject) jsonObject);
 			}
@@ -83,7 +90,7 @@ public class Censo {
 	}
 	
 	public void AgregarAristasJSON() {
-		_radioCensal = new Grafo(13);
+		
 		JSONParser jsonParser = new JSONParser();
 		try (FileReader resder = new FileReader("Grafo.json")){
 			Object obj = jsonParser.parse(resder);
@@ -104,4 +111,15 @@ public class Censo {
 		Long vert2= (Long) jsonObject.get("vert2");
 		_radioCensal.agregarArista(vert1.intValue(), vert2.intValue());
 	}
+	
+	
+	public static Set<Long> get_SetCoodenadas() {
+		return _coodenadas.keySet();
+	}
+
+	public static Map<Long, Tupla<Double, Double>> get_coodenadas() {
+		return _coodenadas;
+	}
+	
+	
 }

@@ -2,92 +2,134 @@
   {
     "Vertice": {
 		"numero": 1,
-		"Latitud": -34.537375, 
-		"Logitud": -58.740924
+		"Latitud": -34.520275,  
+		"Logitud": -58.700838
      }
   },
   {
      "Vertice": {
 		"numero": 2,
-		"Latitud": -34.536730,
-		"Logitud": -58.740186
+		"Latitud": -34.520911, 
+		"Logitud": -58.701482
      }
   },
    {
      "Vertice": {
 		"numero":3,
-		"Latitud": -34.535985,
-		"Logitud": -58.739405
+		"Latitud": -34.521477, 
+		"Logitud": -58.702287
 	 }
    },
    {
      "Vertice": {
 		"numero":4,
-		"Latitud": -34.535230,
-		"Logitud": -58.738540
+		"Latitud": -34.522202, 
+		"Logitud": -58.702952
 	 }
    },
    {
      "Vertice": {
 		"numero":5,
-		"Latitud": -34.534541,
-		"Logitud": -58.737838
+		"Latitud": -34.523162, 
+		"Logitud": -58.703344
 	 }
    },
    {
      "Vertice":{
 		"numero": 6,
-		"Latitud": -34.533667,
-		"Logitud": -58.736975
+		"Latitud": -34.522681, 
+		"Logitud": -58.704059
 	 }
    },
    {
      "Vertice": {
 		"numero":7,
-		"Latitud": -34.532960,
-		"Logitud": -58.737962
+		"Latitud": -34.523905, 
+		"Logitud": -58.704173
 	 }
    },
    {
      "Vertice": {
 		"numero":8,
-		"Latitud": -34.533801,
-		"Logitud": -58.738792
+		"Latitud": -34.523396, 
+		"Logitud": -58.704817
 	 }
    },
    {
      "Vertice": {
 		"numero":9,
-		"Latitud": -34.534482,
-		"Logitud": -58.739607
+		"Latitud": -34.524462, 
+		"Logitud": -58.704765
 	 }
    },
    {
      "Vertice": {
 		"numero":10,
-		"Latitud": -34.535221,
-		"Logitud": -58.740412
+		"Latitud": -34.523977, 
+		"Logitud": -58.705462
 	 }
    },
    {
      "Vertice": {
 		"numero":11,
-		"Latitud": -34.535974,
-		"Logitud": -58.741225
+		"Latitud": -34.523270, 
+		"Logitud": -58.706440
 	 }
    },
    {
      "Vertice": {
 		"numero":12,
-		"Latitud": -34.536626,
-		"Logitud": -58.741924
+		"Latitud": -34.522925, 
+		"Logitud": -58.705490
 	 }
    },
    {
      "Vertice": {
 		"numero":13,
-		"Latitud": -34.535882,
-		"Logitud": -58.742930
+		"Latitud": -34.522457, 
+		"Logitud": -58.706096
 	 }
-   }  
+   },
+   {
+     "Vertice": {
+		"numero":14,
+		"Latitud": -34.522214,  
+		"Logitud": -58.704744
+	 }
+   },
+   {
+     "Vertice": {
+		"numero":15,
+		"Latitud": -34.521741,  
+		"Logitud": -58.705366
+	 }
+   },
+   {
+     "Vertice": {
+		"numero":16,
+		"Latitud": -34.521306,  
+		"Logitud": -58.704135
+	 }
+   },
+   {
+     "Vertice": {
+		"numero":17,
+		"Latitud": -34.520642, 
+		"Logitud": -58.703270
+	 }
+   },
+   {
+     "Vertice": {
+		"numero":18,
+		"Latitud": -34.520053,  
+		"Logitud": -58.702543
+	 }
+   },
+   {
+     "Vertice": {
+		"numero":19,
+		"Latitud": -34.519429,   
+		"Logitud": -58.701837
+	 }
+   }
 ]

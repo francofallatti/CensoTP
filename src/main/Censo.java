@@ -3,6 +3,7 @@ package main;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,12 +18,77 @@ public class Censo {
 	private Grafo _radioCensal;
 	//private ArrayList<Censista> _censitas;
 	private Set<Censista> _censitas;
-	private static Map<Long, Tupla<Double, Double>> _coodenadas;
+	private Map<Censista, ArrayList<Integer>> _censistasAsignados;
+	private static Map<Integer, Tupla<Double, Double>> _coodenadas;
+	private boolean[] _manzanasCensadas;
 
 	public Censo() {
 		agregarCensistasJSON();
 		agregarCoordenadasJSON();
 		AgregarAristasJSON();
+		_manzanasCensadas = new boolean[_radioCensal.tamano()];
+	}
+	
+	private Integer getVerticeNoVisitado() {
+		Integer vertice = -1;
+		Integer i = 0;
+		while (vertice == -1 && i < _manzanasCensadas.length) {
+			if(_manzanasCensadas[i] == false) {
+				vertice = i+1;
+			} else {
+				i++;
+			}
+		}
+		return vertice;
+	}
+	
+	private ArrayList<Integer> recorridoParaCensista() {
+		Integer origen = getVerticeNoVisitado();
+		_manzanasCensadas[origen] = true;	//marco la manzana de origen
+		ArrayList<Integer> recorrido = crearRecorrido(origen, _radioCensal, _manzanasCensadas);
+		return recorrido;
+	}
+	
+	private static ArrayList<Integer> crearRecorrido(Integer origen, Grafo radioCensal, boolean[] manzanasCensadas){
+		ArrayList<Integer> rec = new ArrayList<Integer>();
+		return crearRecorrido(rec, origen, radioCensal, manzanasCensadas);
+	}
+	
+	private static ArrayList<Integer> crearRecorrido(ArrayList<Integer> recorrido, Integer origen, Grafo radioCensal, boolean[] manzanasCensadas){
+		if(recorrido.size() == 3) {
+			return recorrido;
+		}
+		if(todosVisitados(manzanasCensadas, radioCensal.getVecinos(origen))) {
+			if(todosVisitados(manzanasCensadas, radioCensal.getVecinos(recorrido.get(0)))) {
+				return recorrido;
+			} else {
+				return crearRecorrido(recorrido, recorrido.get(0), radioCensal, manzanasCensadas);
+			}
+		} else {
+			Integer manzanaActual = getManzanaVecinaNoCensada(radioCensal, origen, manzanasCensadas, radioCensal.getVecinos(origen));
+			recorrido.add(manzanaActual);
+			manzanasCensadas[manzanaActual-1] = true;
+			return crearRecorrido(recorrido, manzanaActual, radioCensal, manzanasCensadas);
+		}
+	}
+	
+	private static Integer getManzanaVecinaNoCensada(Grafo g, Integer origen, boolean[] manzanasCensadas, Set<Integer> vecinos) {
+		Integer vertice = -1;
+		for(Integer vecino : vecinos) {
+			if(manzanasCensadas[vecino-1] == false) {
+				vertice = vecino;
+				break;
+			}
+		}
+		return vertice;
+	}
+	
+	private static boolean todosVisitados(boolean[] manzanasCensadas, Set<Integer> vertices) {
+		boolean ret = true;
+		for(Integer vertice : vertices) {
+			ret = ret && manzanasCensadas[vertice-1];
+		}
+		return ret;
 	}
 	
 	public void agregarCensistasJSON() {
@@ -73,7 +139,7 @@ public class Censo {
 		double latitud= (Double) info.get("Latitud");
 		double longitud= (Double) info.get("Logitud");
 		Tupla<Double, Double> coord = new Tupla<Double, Double>(latitud, longitud);
-		_coodenadas.put(numero, coord);
+		_coodenadas.put(numero.intValue(), coord);
 	}
 	
 	public void AgregarAristasJSON() {
@@ -98,11 +164,11 @@ public class Censo {
 		_radioCensal.agregarArista(vert1.intValue(), vert2.intValue());
 	}
 	
-	public static Set<Long> get_SetCoodenadas() {
+	public static Set<Integer> get_SetCoodenadas() {
 		return _coodenadas.keySet();
 	}
 
-	public static Map<Long, Tupla<Double, Double>> get_coodenadas() {
+	public static Map<Integer, Tupla<Double, Double>> get_coodenadas() {
 		return _coodenadas;
 	}
 	

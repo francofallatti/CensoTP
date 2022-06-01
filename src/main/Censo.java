@@ -1,10 +1,8 @@
 package main;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -20,8 +18,6 @@ public class Censo {
 	//private ArrayList<Censista> _censitas;
 	private Set<Censista> _censitas;
 	private static Map<Long, Tupla<Double, Double>> _coodenadas;
-	
-	
 
 	public Censo() {
 		agregarCensistasJSON();
@@ -81,12 +77,11 @@ public class Censo {
 	}
 	
 	public void AgregarAristasJSON() {
-		
 		JSONParser jsonParser = new JSONParser();
 		try (FileReader reader = new FileReader("Grafo.json")){
 			Object obj = jsonParser.parse(reader);
 			JSONArray grafoList = (JSONArray) obj;
-			for(Object jsonObject : grafoList ) {
+			for(Object jsonObject : grafoList) {
 				GrafoInfo((JSONObject) jsonObject);
 			}
 		} catch (FileNotFoundException e) {
@@ -102,7 +97,6 @@ public class Censo {
 		Long vert2= (Long) jsonObject.get("vert2");
 		_radioCensal.agregarArista(vert1.intValue(), vert2.intValue());
 	}
-	
 	
 	public static Set<Long> get_SetCoodenadas() {
 		return _coodenadas.keySet();

@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -16,57 +17,47 @@ import org.json.simple.parser.ParseException;
 
 public class Censo {
 	private Grafo _radioCensal;
-	private ArrayList<Censista> _censitas;
+	//private ArrayList<Censista> _censitas;
+	private Set<Censista> _censitas;
 	private static Map<Long, Tupla<Double, Double>> _coodenadas;
 	
 	
 
 	public Censo() {
-		agregarCensista();
-		_coodenadas = new HashMap<>();
+		agregarCensistasJSON();
 		agregarCoordenadasJSON();
 		AgregarAristasJSON();
 	}
 	
-	private void agregarCensista() {
-		_censitas = new ArrayList<Censista>();
-		try (FileReader fr = new FileReader("censistas.txt");
-				BufferedReader br = new BufferedReader(fr)) {
-			String txt,imagen,nombre = null;
-			while ((txt = br.readLine()) != null) {
-				if(txt.charAt(0)!='/') {
-					nombre=txt;
-				}else {
-					imagen=txt;
-					Censista censista = new Censista(nombre, imagen);
-					_censitas.add(censista);
-				}
-				
+	public void agregarCensistasJSON() {
+		_censitas = new HashSet<>();
+		JSONParser jsonParser = new JSONParser();
+		try (FileReader reader = new FileReader("Censistas.json")){
+			Object obj = jsonParser.parse(reader);
+			JSONArray CoordenadasList = (JSONArray) obj;
+			for(Object jsonObject : CoordenadasList ) {
+				agregarCensistas((JSONObject) jsonObject);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}catch(ParseException e) {
+			e.printStackTrace();
 		}
 	}
-	
-	
-	public ArrayList<Censista> getCensistasArrayList() {
-		return _censitas;
-	}
-	public ArrayList<String> getCensistasArrayListToString() {
-		ArrayList<String> s= new ArrayList<String>();
-		for(Censista censista: _censitas) {
-			s.add(censista.getNombre());
-			s.add(censista.get_imagen());
-		}
-		return s;
+	private void agregarCensistas(JSONObject jsonObject) {
+		String nombre= (String) jsonObject.get("nombre");
+		String imagen= (String) jsonObject.get("imagen");
+		Censista censista = new Censista(nombre, "/FotosCensistas/"+imagen);
+		_censitas.add(censista);
 	}
 	
 	public void agregarCoordenadasJSON() {
+		_coodenadas = new HashMap<>();
 		JSONParser jsonParser = new JSONParser();
-		try (FileReader resder = new FileReader("Coordenadas.json")){
-			Object obj = jsonParser.parse(resder);
+		try (FileReader reader = new FileReader("Coordenadas.json")){
+			Object obj = jsonParser.parse(reader);
 			JSONArray CoordenadasList = (JSONArray) obj;
 			_radioCensal = new Grafo(CoordenadasList.size()+1);
 			for(Object jsonObject : CoordenadasList ) {
@@ -92,8 +83,8 @@ public class Censo {
 	public void AgregarAristasJSON() {
 		
 		JSONParser jsonParser = new JSONParser();
-		try (FileReader resder = new FileReader("Grafo.json")){
-			Object obj = jsonParser.parse(resder);
+		try (FileReader reader = new FileReader("Grafo.json")){
+			Object obj = jsonParser.parse(reader);
 			JSONArray grafoList = (JSONArray) obj;
 			for(Object jsonObject : grafoList ) {
 				GrafoInfo((JSONObject) jsonObject);

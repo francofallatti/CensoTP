@@ -1,0 +1,62 @@
+[
+	{
+		"nombre": "aaron",
+		"imagen": "aaron.jpg"
+	},
+	{
+		"nombre": "ana",
+		"imagen": "ana.jpg"
+	},
+	{
+		"nombre": "carla",
+		"imagen": "carla.jpg"
+	},
+	{
+		"nombre": "daniel",
+		"imagen": "daniel.jpg"
+	},
+	{
+		"nombre": "dylan",
+		"imagen": "dylan.jpg"
+	},
+	{
+		"nombre": "gloria",
+		"imagen": "gloria.jpg"
+	},
+	{
+		"nombre": "gustabo",
+		"imagen": "gustabo.jpg"
+	},
+	{
+		"nombre": "jorge",
+		"imagen": "jorge.jpg"
+	},
+	{
+		"nombre": "juan",
+		"imagen": "juan.jpg"
+	},
+	{
+		"nombre": "lautaro",
+		"imagen": "lautaro.jpg"
+	},
+	{
+		"nombre": "mirtha",
+		"imagen": "mirtha.jpg"
+	},
+	{
+		"nombre": "pedro",
+		"imagen": "pedro.jpg"
+	},
+	{
+		"nombre": "raul",
+		"imagen": "raul.jpg"
+	},
+	{
+		"nombre": "susana",
+		"imagen": "susana.jpg"
+	},
+	{
+		"nombre": "valentin",
+		"imagen": "valentin.jpg"
+	}
+]

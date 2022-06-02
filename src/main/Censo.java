@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
@@ -17,9 +16,7 @@ import org.json.simple.parser.ParseException;
 
 public class Censo {
 	private Grafo _radioCensal;
-	//private ArrayList<Censista> _censitas;
-	private ArrayList<Censista> _censitas;
-	private Map<Censista, ArrayList<Integer>> _censistasAsignados;
+	private ArrayList<Censista> _censistas;
 	private static Map<Integer, Tupla<Double, Double>> _coodenadas;
 	private boolean[] _manzanasCensadas;
 
@@ -28,15 +25,21 @@ public class Censo {
 		agregarCoordenadasJSON();
 		AgregarAristasJSON();
 		_manzanasCensadas = new boolean[_radioCensal.tamano()];
-		_censistasAsignados = new HashMap<Censista, ArrayList<Integer>>();
 	}
 	
-	private void asigarCensistas() {
+	public static Map<Censista, ArrayList<Integer>> censar() {
+		Censo censo = new Censo();
+		return censo.asigarCensistas();
+	}
+	
+	private Map<Censista, ArrayList<Integer>> asigarCensistas() {
+		Map<Censista, ArrayList<Integer>> _censistasAsignados = new HashMap<Censista, ArrayList<Integer>>();
 		while(!todosVisitados()) {
-			Integer censistaAleatorio = new Random(_censitas.size()).nextInt();
-			Censista censistaElegido = _censitas.get(censistaAleatorio);
+			Integer censistaAleatorio = new Random(_censistas.size()).nextInt();
+			Censista censistaElegido = _censistas.get(censistaAleatorio);
 			_censistasAsignados.put(censistaElegido, recorridoParaCensista());
 		}
+		return _censistasAsignados;
 	}
 	
 	private boolean todosVisitados() {
@@ -110,7 +113,7 @@ public class Censo {
 	}
 	
 	public void agregarCensistasJSON() {
-		_censitas = new HashSet<>();
+		_censistas = new ArrayList<>();
 		JSONParser jsonParser = new JSONParser();
 		try (FileReader reader = new FileReader("Censistas.json")){
 			Object obj = jsonParser.parse(reader);
@@ -130,7 +133,7 @@ public class Censo {
 		String nombre= (String) jsonObject.get("nombre");
 		String imagen= (String) jsonObject.get("imagen");
 		Censista censista = new Censista(nombre, "/FotosCensistas/"+imagen);
-		_censitas.add(censista);
+		_censistas.add(censista);
 	}
 	
 	public void agregarCoordenadasJSON() {

@@ -69,7 +69,7 @@ public class MapInterface {
 		marker.getStyle().setColor(Color.orange);
 		JMap.addMapMarker(marker);
 		System.out.println("hola1");
-		for(Long vert: Censo.get_SetCoodenadas()) {
+		for(Integer vert: Censo.get_SetCoodenadas()) {
 			System.out.println("hola");
 			System.out.println(vert);
 			MapMarker marker2= new MapMarkerDot(Censo.get_coodenadas().get(vert).getE1(),Censo.get_coodenadas().get(vert).getE2());

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 import org.json.simple.JSONArray;
@@ -17,7 +18,7 @@ import org.json.simple.parser.ParseException;
 public class Censo {
 	private Grafo _radioCensal;
 	//private ArrayList<Censista> _censitas;
-	private Set<Censista> _censitas;
+	private ArrayList<Censista> _censitas;
 	private Map<Censista, ArrayList<Integer>> _censistasAsignados;
 	private static Map<Integer, Tupla<Double, Double>> _coodenadas;
 	private boolean[] _manzanasCensadas;
@@ -27,6 +28,23 @@ public class Censo {
 		agregarCoordenadasJSON();
 		AgregarAristasJSON();
 		_manzanasCensadas = new boolean[_radioCensal.tamano()];
+		_censistasAsignados = new HashMap<Censista, ArrayList<Integer>>();
+	}
+	
+	private void asigarCensistas() {
+		while(!todosVisitados()) {
+			Integer censistaAleatorio = new Random(_censitas.size()).nextInt();
+			Censista censistaElegido = _censitas.get(censistaAleatorio);
+			_censistasAsignados.put(censistaElegido, recorridoParaCensista());
+		}
+	}
+	
+	private boolean todosVisitados() {
+		boolean ret = true;
+		for(boolean b : _manzanasCensadas) {
+			ret = ret && b;
+		}
+		return ret;
 	}
 	
 	private Integer getVerticeNoVisitado() {

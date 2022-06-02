@@ -2,6 +2,8 @@ package Interface;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.util.ArrayList;
+import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
@@ -11,12 +13,15 @@ import org.openstreetmap.gui.jmapviewer.JMapViewer;
 import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
 import org.openstreetmap.gui.jmapviewer.interfaces.MapMarker;
 
+import main.Censista;
 import main.Censo;
+
 public class MapInterface {
 
 	private JFrame frame;
 	private JMapViewer JMap;
 	private Censo censo;
+
 	/**
 	 * Launch the application.
 	 */
@@ -40,7 +45,7 @@ public class MapInterface {
 	public MapInterface() {
 		censo = new Censo();
 		initialize();
-		
+
 	}
 
 	/**
@@ -51,33 +56,36 @@ public class MapInterface {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setTitle("Trabajo Practico 3: El TP del censo!");
-		
+
 		JMap = new JMapViewer();
 		JMap.setZoomControlsVisible(false);
-		
-		
-		//agrego un marcador
+
+		// agrego un marcador
 		/*
-		MapMarker marker= new MapMarkerDot("Aqui", coordenada);
-		marker.getStyle().setBackColor(Color.red);
-		marker.getStyle().setColor(Color.orange);
-		JMap.addMapMarker(marker);*/
+		 * MapMarker marker= new MapMarkerDot("Aqui", coordenada);
+		 * marker.getStyle().setBackColor(Color.red);
+		 * marker.getStyle().setColor(Color.orange); JMap.addMapMarker(marker);
+		 */
 		Coordinate coordenada = new Coordinate(-34.521, -58.719);
 		JMap.setDisplayPosition(coordenada, 12);
-		MapMarker marker= new MapMarkerDot(coordenada);
+		MapMarker marker = new MapMarkerDot(coordenada);
 		marker.getStyle().setBackColor(Color.red);
 		marker.getStyle().setColor(Color.orange);
 		JMap.addMapMarker(marker);
-		System.out.println("hola1");
-		for(Integer vert: Censo.get_SetCoodenadas()) {
+		Map<Censista, ArrayList<Integer>> _censo = censo.censar();
+		for (Censista c : _censo.keySet()) {
+			System.out.println("vertice:" + c.getNombre());
+			System.out.println("rec" + _censo.get(c));
+		}
+		for (Integer vert : Censo.get_SetCoodenadas()) {
 			System.out.println("hola");
 			System.out.println(vert);
-			MapMarker marker2= new MapMarkerDot(Censo.get_coodenadas().get(vert).getE1(),Censo.get_coodenadas().get(vert).getE2());
+			MapMarker marker2 = new MapMarkerDot(Censo.get_coodenadas().get(vert).getE1(),
+					Censo.get_coodenadas().get(vert).getE2());
 			marker2.getStyle().setBackColor(Color.red);
 			marker2.getStyle().setColor(Color.orange);
 			JMap.addMapMarker(marker2);
 		}
-		System.out.println("hola2");
 		frame.getContentPane().add(JMap);
 	}
 

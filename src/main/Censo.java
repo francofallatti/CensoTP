@@ -26,12 +26,26 @@ public class Censo {
 		AgregarAristasJSON();
 		_manzanasCensadas = new boolean[_radioCensal.tamano()];
 	}
+	
+	public Censo(Integer manzanasACensar) {
+		_radioCensal = new Grafo(manzanasACensar);
+		_censistasDisponibles = new ArrayList<Censista>();
+	}
+
+	public void manzanasContiguas(Integer m1, Integer m2) {
+		_radioCensal.agregarArista(m1, m2);
+	}
+	
+	public void agregarCensista(String nombre) {
+		Censista c = new Censista(nombre);
+		_censistasDisponibles.add(c);
+	}
 
 	public Map<Censista, ArrayList<Integer>> censar() {
 		return asigarCensistas();
 	}
 
-	public Map<Censista, ArrayList<Integer>> asigarCensistas() {
+	private Map<Censista, ArrayList<Integer>> asigarCensistas() {
 		Map<Censista, ArrayList<Integer>> _censistasAsignados = new HashMap<Censista, ArrayList<Integer>>();
 		while (!todosVisitados()) {
 			Integer censistaAleatorio = new Random().nextInt(_censistasDisponibles.size());
@@ -112,7 +126,7 @@ public class Censo {
 		return ret;
 	}
 
-	public void agregarCensistasJSON() {
+	private void agregarCensistasJSON() {
 		_censistasDisponibles = new ArrayList<>();
 		JSONParser jsonParser = new JSONParser();
 		try (FileReader reader = new FileReader("Censistas.json")) {
@@ -137,7 +151,7 @@ public class Censo {
 		_censistasDisponibles.add(censista);
 	}
 
-	public void agregarCoordenadasJSON() {
+	private void agregarCoordenadasJSON() {
 		_coodenadas = new HashMap<>();
 		JSONParser jsonParser = new JSONParser();
 		try (FileReader reader = new FileReader("Coordenadas.json")) {
@@ -165,7 +179,7 @@ public class Censo {
 		_coodenadas.put(numero.intValue(), coord);
 	}
 
-	public void AgregarAristasJSON() {
+	private void AgregarAristasJSON() {
 		JSONParser jsonParser = new JSONParser();
 		try (FileReader reader = new FileReader("Grafo.json")) {
 			Object obj = jsonParser.parse(reader);

@@ -209,5 +209,8 @@ public class Censo {
 	public static Map<Integer, Tupla<Double, Double>> get_coodenadas() {
 		return _coodenadas;
 	}
-
+	
+	public static Tupla<Double, Double> get_Coordenada(Integer c){
+		return _coodenadas.get(c);
+	}
 }

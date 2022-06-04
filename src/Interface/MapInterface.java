@@ -74,35 +74,30 @@ public class MapInterface {
 		Coordinate coordenada = new Coordinate(-34.521306,-58.704135);
 		JMap.setDisplayPosition(coordenada, 14);//seteo el zoom y la pocision en la cual se va a ver el mapa
 		
-		for (Integer vert : Censo.get_SetCoodenadas()) {
+		for (Integer vert : censo.get_SetCoodenadas()) {
 			System.out.println(vert);
-			MapMarker marker = new MapMarkerDot(Censo.get_coodenadas().get(vert).getE1(),
-					Censo.get_coodenadas().get(vert).getE2());
+			MapMarker marker = new MapMarkerDot(censo.get_coodenadas().get(vert).getE1(),
+					censo.get_coodenadas().get(vert).getE2());
 			marker.getStyle().setBackColor(Color.red);
 			marker.getStyle().setColor(Color.orange);
 			JMap.addMapMarker(marker);
 		}
 		
 		Color color2 = new Color((int)(Math.random() * 0x1000000));
-		MapMarker Recorri2 = new MapMarkerDot(Censo.get_Coordenada(3).getE1(),Censo.get_Coordenada(3).getE2());
+		MapMarker Recorri2 = new MapMarkerDot(censo.get_Coordenada(3).getE1(),censo.get_Coordenada(3).getE2());
 		Recorri2.getStyle().setBackColor(color2);
 		Recorri2.getStyle().setColor(color2);
 		JMap.addMapMarker(Recorri2);
 		
-		Map<Censista, ArrayList<Integer>> _censo = censo.censar();
-		for (Censista c : _censo.keySet()) {
-			//test
+		Map<Censista, ArrayList<Integer>> _censo = censo.censar(); //devuelve: censista -> lista con numero de vertices del recorrido
+		for (Censista c : _censo.keySet()) { //por cada censista
 			Color color = new Color((int)(Math.random() * 0x1000000));
-			for(Integer coor : _censo.get(c)) {
-				System.out.println("vertice: " + c.getNombre() +" rec " + coor);
-				
-				MapMarker Recorrido = new MapMarkerDot(Censo.get_Coordenada(coor).getE1(),Censo.get_Coordenada(coor).getE2());
+			for(Integer vertice : _censo.get(c)) { //recorro los vertices que visita
+				MapMarker Recorrido = new MapMarkerDot(censo.get_Coordenada(vertice).getE1(),censo.get_Coordenada(vertice).getE2());
 				Recorrido.getStyle().setBackColor(color);
 				Recorrido.getStyle().setColor(color);
 				JMap.addMapMarker(Recorrido);
 			}
-			System.out.println("vertice:" + c.getNombre() + " rec" + _censo.get(c));
-			//System.out.println("rec" + _censo.get(c));
 		}
 		frame.getContentPane().add(JMap);
 		

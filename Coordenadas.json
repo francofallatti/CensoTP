@@ -1,6 +1,14 @@
 [
   {
     "Vertice": {
+		"numero": 0,
+		"Latitud": -34.518567,  
+		"Logitud": -58.702910
+     }
+  },
+ 
+  {
+    "Vertice": {
 		"numero": 1,
 		"Latitud": -34.520275,  
 		"Logitud": -58.700838

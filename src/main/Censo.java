@@ -17,7 +17,7 @@ import org.json.simple.parser.ParseException;
 public class Censo {
 	private Grafo _radioCensal;
 	private ArrayList<Censista> _censistasDisponibles;
-	private static Map<Integer, Tupla<Double, Double>> _coodenadas;
+	private Map<Integer, Tupla<Double, Double>> _coodenadas;
 	private boolean[] _manzanasCensadas;
 
 	public Censo() {
@@ -152,7 +152,7 @@ public class Censo {
 	}
 
 	private void agregarCoordenadasJSON() {
-		_coodenadas = new HashMap<>();
+		_coodenadas = new HashMap<Integer, Tupla<Double, Double>>();
 		JSONParser jsonParser = new JSONParser();
 		try (FileReader reader = new FileReader("Coordenadas.json")) {
 			Object obj = jsonParser.parse(reader);
@@ -199,18 +199,18 @@ public class Censo {
 	private void GrafoInfo(JSONObject jsonObject) {
 		Long vert1 = (Long) jsonObject.get("vert1");
 		Long vert2 = (Long) jsonObject.get("vert2");
-		_radioCensal.agregarArista(vert1.intValue() - 1, vert2.intValue() - 1);
+		_radioCensal.agregarArista(vert1.intValue(), vert2.intValue());
 	}
 
-	public static Set<Integer> get_SetCoodenadas() {
+	public Set<Integer> get_SetCoodenadas() {
 		return _coodenadas.keySet();
 	}
 
-	public static Map<Integer, Tupla<Double, Double>> get_coodenadas() {
+	public Map<Integer, Tupla<Double, Double>> get_coodenadas() {
 		return _coodenadas;
 	}
 	
-	public static Tupla<Double, Double> get_Coordenada(Integer c){
+	public Tupla<Double, Double> get_Coordenada(Integer c){
 		return _coodenadas.get(c);
 	}
 }

@@ -104,6 +104,7 @@ public class MapInterface {
 		JButton btnNewButton = new JButton("▶");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		btnNewButton.setBounds(10, 227, 48, 23);

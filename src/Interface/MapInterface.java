@@ -35,8 +35,6 @@ public class MapInterface {
 			@Override
 			public void run() {
 				try {
-					MapInterface window = new MapInterface();
-					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -47,17 +45,18 @@ public class MapInterface {
 	/**
 	 * Create the application.
 	 */
-	public MapInterface() {
+	public MapInterface(boolean b) {
 		censo = new Censo();
-		initialize();
+		initialize(b);
 
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(boolean b) {
 		frame = new JFrame();
+		frame.setVisible(b);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setTitle("Trabajo Practico 3: El TP del censo!");

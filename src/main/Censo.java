@@ -37,6 +37,9 @@ public class Censo {
 	}
 	
 	public void agregarCensista(String nombre) {
+		if (nombre == null) {
+			throw new IllegalArgumentException("El censista necesita un nombre");
+		}
 		Censista c = new Censista(nombre);
 		_censistasDisponibles.add(c);
 	}
@@ -50,7 +53,7 @@ public class Censo {
 		while (!todosVisitados()) {
 			Integer censistaAleatorio = new Random().nextInt(_censistasDisponibles.size());
 			Censista censistaElegido = _censistasDisponibles.get(censistaAleatorio);
-			System.out.println(censistaElegido.getNombre());
+			//System.out.println(censistaElegido.getNombre());
 			_censistasAsignados.put(censistaElegido, recorridoParaCensista());
 			_censistasDisponibles.remove(censistaElegido);
 		}
@@ -212,5 +215,9 @@ public class Censo {
 	
 	public Tupla<Double, Double> get_Coordenada(Integer c){
 		return _coodenadas.get(c);
+	}
+	
+	public ArrayList<Censista> get_censistasDisponibles() {
+		return _censistasDisponibles;
 	}
 }

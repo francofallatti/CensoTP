@@ -139,5 +139,33 @@
 		"Latitud": -34.519429,   
 		"Logitud": -58.701837
 	 }
+   },
+   {
+     "Vertice": {
+		"numero":20,
+		"Latitud": -34.519150,   
+		"Logitud": -58.703633
+	 }
+   },
+   {
+     "Vertice": {
+		"numero":21,
+		"Latitud": -34.519792,    
+		"Logitud": -58.704318
+	 }
+   },
+   {
+     "Vertice": {
+		"numero":22,
+		"Latitud": -34.520528,    
+		"Logitud": -58.705103
+	 }
+   },
+   {
+     "Vertice": {
+		"numero":23,
+		"Latitud": -34.521220,    
+		"Logitud": -58.706024
+	 }
    }
 ]

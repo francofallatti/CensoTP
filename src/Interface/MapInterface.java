@@ -64,17 +64,12 @@ public class MapInterface {
 		JMap = new JMapViewer();
 		JMap.setZoomControlsVisible(false);
 
-		// agrego un marcador
-		/*
-		 * MapMarker marker= new MapMarkerDot("Aqui", coordenada);
-		 * marker.getStyle().setBackColor(Color.red);
-		 * marker.getStyle().setColor(Color.orange); JMap.addMapMarker(marker);
-		 */
+		
 		Coordinate coordenada = new Coordinate(-34.521306,-58.704135);
 		JMap.setDisplayPosition(coordenada, 14);//seteo el zoom y la pocision en la cual se va a ver el mapa
 		
+		// agrego un marcador de manzanas a censar
 		for (Integer vert : censo.get_SetCoodenadas()) {
-			System.out.println(vert);
 			MapMarker marker = new MapMarkerDot(censo.get_coodenadas().get(vert).getE1(),
 					censo.get_coodenadas().get(vert).getE2());
 			marker.getStyle().setBackColor(Color.red);
@@ -82,31 +77,25 @@ public class MapInterface {
 			JMap.addMapMarker(marker);
 		}
 		
-		Color color2 = new Color((int)(Math.random() * 0x1000000));
-		MapMarker Recorri2 = new MapMarkerDot(censo.get_Coordenada(3).getE1(),censo.get_Coordenada(3).getE2());
-		Recorri2.getStyle().setBackColor(color2);
-		Recorri2.getStyle().setColor(color2);
-		JMap.addMapMarker(Recorri2);
 		
-		Map<Censista, ArrayList<Integer>> _censo = censo.censar(); //devuelve: censista -> lista con numero de vertices del recorrido
-		for (Censista c : _censo.keySet()) { //por cada censista
-			Color color = new Color((int)(Math.random() * 0x1000000));
-			for(Integer vertice : _censo.get(c)) { //recorro los vertices que visita
-				MapMarker Recorrido = new MapMarkerDot(censo.get_Coordenada(vertice).getE1(),censo.get_Coordenada(vertice).getE2());
-				Recorrido.getStyle().setBackColor(color);
-				Recorrido.getStyle().setColor(color);
-				JMap.addMapMarker(Recorrido);
-			}
-		}
 		frame.getContentPane().add(JMap);
 		
-		JButton btnNewButton = new JButton("▶");
+		JButton btnNewButton = new JButton("Censar ▶");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				Map<Censista, ArrayList<Integer>> _censo = censo.censar(); //devuelve: censista -> lista con numero de vertices del recorrido
+				for (Censista c : _censo.keySet()) { //por cada censista
+					Color color = new Color((int)(Math.random() * 0x1000000));
+					for(Integer vertice : _censo.get(c)) { //recorro los vertices que visita
+						MapMarker Recorrido = new MapMarkerDot(censo.get_Coordenada(vertice).getE1(),censo.get_Coordenada(vertice).getE2());
+						Recorrido.getStyle().setBackColor(color);
+						Recorrido.getStyle().setColor(color);
+						JMap.addMapMarker(Recorrido);
+					}
+				}
 			}
 		});
-		btnNewButton.setBounds(10, 227, 48, 23);
+		btnNewButton.setBounds(10, 227, 91, 23);
 		JMap.add(btnNewButton);
 	}
 }

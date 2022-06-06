@@ -1,14 +1,15 @@
 package Interface;
 
+import java.awt.Color;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JButton;
 import java.awt.Font;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class MainInterface {
 
@@ -42,11 +43,15 @@ public class MainInterface {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.BLACK);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("CENSO 2022");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBackground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel.setBounds(169, 56, 80, 14);
 		frame.getContentPane().add(lblNewLabel);
@@ -58,7 +63,7 @@ public class MainInterface {
 				frame.setVisible(false);
 			}
 		});
-		btnNewButton.setBounds(110, 111, 209, 23);
+		btnNewButton.setBounds(93, 112, 252, 23);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Ingresar informacion manualmente");
@@ -68,7 +73,7 @@ public class MainInterface {
 				frame.setVisible(false);
 			}
 		});
-		btnNewButton_1.setBounds(110, 159, 209, 23);
+		btnNewButton_1.setBounds(93, 159, 252, 23);
 		frame.getContentPane().add(btnNewButton_1);
 	}
 }

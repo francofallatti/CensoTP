@@ -11,7 +11,6 @@ import main.Censo;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import java.awt.BorderLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 
@@ -22,9 +21,6 @@ public class CensoInterface {
 	private JTable table;
 	private DefaultTableModel modelo;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -36,18 +32,11 @@ public class CensoInterface {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 * @wbp.parser.entryPoint
-	 */
 	public CensoInterface(Censo c, boolean b) {
 		censo = c;
 		initialize(b);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize(boolean b) {
 		frame = new JFrame();
 		frame.setVisible(b);
@@ -76,7 +65,7 @@ public class CensoInterface {
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Quedaron " + censo.cantManzanasSinCensar() +" manzanas sin censar");
-		lblNewLabel_1.setBounds(140, 210, 179, 14);
+		lblNewLabel_1.setBounds(127, 210, 203, 14);
 		frame.getContentPane().add(lblNewLabel_1);
 	}
 }

@@ -21,6 +21,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import java.awt.Font;
 
 public class IngresoManualInterface {
 
@@ -29,7 +30,7 @@ public class IngresoManualInterface {
 	private DefaultListModel<String> m;
 	private JTextField nombreCensista;
 	private JLabel lblNewLabel_2;
-	JSpinner cantManzanas;
+	private JSpinner cantManzanas;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -42,19 +43,11 @@ public class IngresoManualInterface {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 * 
-	 * @wbp.parser.entryPoint
-	 */
 	public IngresoManualInterface(boolean b) {
 		m = new DefaultListModel<String>();
 		initialize(b);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	@SuppressWarnings("deprecation")
 	private void initialize(boolean b) {
 		frame = new JFrame();
@@ -111,7 +104,8 @@ public class IngresoManualInterface {
 		frame.getContentPane().add(btnCargar);
 
 		JLabel lblNewLabel_1 = new JLabel("Ingreso de datos");
-		lblNewLabel_1.setBounds(162, 11, 100, 14);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_1.setBounds(162, 11, 110, 14);
 		frame.getContentPane().add(lblNewLabel_1);
 
 		lblNewLabel_2 = new JLabel();

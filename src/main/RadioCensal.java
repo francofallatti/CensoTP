@@ -18,7 +18,7 @@ public class RadioCensal {
 		agregarAristasJSON();
 		_manzanasCensadas = new boolean[_radioCensal.tamano()];
 	}
-	
+
 	public RadioCensal(Integer manzanasACensar) {
 		_radioCensal = new Grafo(manzanasACensar);
 		_manzanasCensadas = new boolean[manzanasACensar];

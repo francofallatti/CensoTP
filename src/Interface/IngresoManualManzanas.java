@@ -17,12 +17,9 @@ public class IngresoManualManzanas {
 
 	private JFrame frame;
 	private Censo censo;
-	DefaultComboBoxModel<Integer> manzanas1;
-	DefaultComboBoxModel<Integer> manzanas2;
+	private DefaultComboBoxModel<Integer> manzanas1;
+	private DefaultComboBoxModel<Integer> manzanas2;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -34,19 +31,11 @@ public class IngresoManualManzanas {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 * 
-	 * @wbp.parser.entryPoint
-	 */
 	public IngresoManualManzanas(Censo c, boolean b) {
 		censo = c;
 		initialize(b);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize(boolean b) {
 		frame = new JFrame();
 		frame.setVisible(b);

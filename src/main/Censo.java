@@ -30,10 +30,6 @@ public class Censo {
 	}
 
 	public Map<Censista, ArrayList<Integer>> censar() {
-		return asigarCensistas();
-	}
-
-	private Map<Censista, ArrayList<Integer>> asigarCensistas() {
 		Map<Censista, ArrayList<Integer>> _censistasAsignados = new HashMap<Censista, ArrayList<Integer>>();
 		while (!_radioCensal.todosVisitados() && _censistasDisponibles.size() != 0) {
 			Integer censistaAleatorio = new Random().nextInt(_censistasDisponibles.size());

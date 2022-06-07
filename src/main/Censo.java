@@ -17,12 +17,15 @@ public class Censo {
 	}
 
 	public Censo(Integer manzanasACensar) {
+		verifException(manzanasACensar);
 		_radioCensal = new RadioCensal(manzanasACensar);
 		_censistasDisponibles = new ArrayList<Censista>();
 	}
 
+	
+
 	public void agregarCensista(String nombre) {
-		if (nombre == null) {
+		if (nombre == null || nombre == "") {
 			throw new IllegalArgumentException("El censista necesita un nombre");
 		}
 		Censista c = new Censista(nombre);
@@ -53,7 +56,11 @@ public class Censo {
 		Censista censista = new Censista(nombre, "/FotosCensistas/" + imagen);
 		_censistasDisponibles.add(censista);
 	}
-
+	
+	public Censista getCensista(int index) {
+		return _censistasDisponibles.get(index);
+	}
+	
 	public RadioCensal get_radioCensal() {
 		return _radioCensal;
 	}
@@ -76,5 +83,12 @@ public class Censo {
 	
 	public Integer cantCensistasLibres() {
 		return _censistasDisponibles.size();
+	}
+	
+	private void verifException(Integer manzanasACensar) {
+		if(manzanasACensar==null) {
+			throw new IllegalArgumentException("Se espera un Integer != null");
+		}
+		
 	}
 }

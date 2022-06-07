@@ -64,6 +64,7 @@ public class CensoInterface {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		modelo = new DefaultTableModel();
+		table.setModel(modelo);
 		modelo.addColumn("Censista");
 		modelo.addColumn("Manzanas a censar");
 		for(Censista c : resultado.keySet()) {

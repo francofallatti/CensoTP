@@ -6,13 +6,19 @@ import javax.swing.JFrame;
 
 import main.Censo;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class IngresoManualManzanas {
 
 	private JFrame frame;
 	private Censo censo;
+	DefaultComboBoxModel<Integer> manzanas1;
+	DefaultComboBoxModel<Integer> manzanas2;
 
 	/**
 	 * Launch the application.
@@ -54,14 +60,14 @@ public class IngresoManualManzanas {
 		JComboBox<Integer> comboBox = new JComboBox<Integer>();
 		comboBox.setBounds(264, 48, 47, 22);
 		frame.getContentPane().add(comboBox);
-		DefaultComboBoxModel<Integer> manzanas1 = new DefaultComboBoxModel<Integer>();
+		manzanas1 = new DefaultComboBoxModel<Integer>();
 		comboBox.setModel(manzanas1);
 		manzanas1.addAll(censo.manzanasACensar());
 		
 		JComboBox<Integer> comboBox_1 = new JComboBox<Integer>();
 		comboBox_1.setBounds(264, 105, 47, 22);
 		frame.getContentPane().add(comboBox_1);
-		DefaultComboBoxModel<Integer> manzanas2 = new DefaultComboBoxModel<Integer>();
+		manzanas2 = new DefaultComboBoxModel<Integer>();
 		comboBox_1.setModel(manzanas2);
 		manzanas2.addAll(censo.manzanasACensar());
 		
@@ -76,5 +82,28 @@ public class IngresoManualManzanas {
 		JLabel lblEsContiguaCon = new JLabel("es contigua con:");
 		lblEsContiguaCon.setBounds(179, 80, 111, 14);
 		frame.getContentPane().add(lblEsContiguaCon);
+		
+		JButton btnNewButton = new JButton("Cargar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(manzanas1.getSelectedItem().equals(manzanas2.getSelectedItem())) {
+					JOptionPane.showMessageDialog(frame, "Las manzanas contiguas deben ser distintas entre sí", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				} else {
+					censo.manzanasContiguas((Integer) manzanas1.getSelectedItem(),(Integer) manzanas2.getSelectedItem());
+				}
+			}
+		});
+		btnNewButton.setBounds(166, 151, 89, 23);
+		frame.getContentPane().add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Comenzar censo!");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnNewButton_1.setBounds(264, 227, 148, 23);
+		frame.getContentPane().add(btnNewButton_1);
 	}
 }

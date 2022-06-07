@@ -63,14 +63,14 @@ public class IngresoManualManzanas {
 		frame.getContentPane().add(comboBox);
 		manzanas1 = new DefaultComboBoxModel<Integer>();
 		comboBox.setModel(manzanas1);
-		manzanas1.addAll(censo.manzanasACensar());
+		manzanas1.addAll(censo.get_radioCensal().manzanasACensar());
 
 		JComboBox<Integer> comboBox_1 = new JComboBox<Integer>();
 		comboBox_1.setBounds(264, 105, 47, 22);
 		frame.getContentPane().add(comboBox_1);
 		manzanas2 = new DefaultComboBoxModel<Integer>();
 		comboBox_1.setModel(manzanas2);
-		manzanas2.addAll(censo.manzanasACensar());
+		manzanas2.addAll(censo.get_radioCensal().manzanasACensar());
 
 		JLabel lblManzanaN = new JLabel("Manzana n\u00BA:");
 		lblManzanaN.setBounds(110, 52, 87, 14);
@@ -95,7 +95,7 @@ public class IngresoManualManzanas {
 						JOptionPane.showMessageDialog(frame, "Debe cargar continuidad entre 2 (DOS) manzanas", "Error",
 								JOptionPane.ERROR_MESSAGE);
 					} else {
-						censo.manzanasContiguas((Integer) manzanas1.getSelectedItem(),
+						censo.get_radioCensal().manzanasContiguas((Integer) manzanas1.getSelectedItem(),
 								(Integer) manzanas2.getSelectedItem());
 						JOptionPane.showMessageDialog(frame,
 								"La continuidad entra las manzanas " + manzanas1.getSelectedItem() + " y "

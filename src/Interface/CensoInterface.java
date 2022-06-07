@@ -75,7 +75,7 @@ public class CensoInterface {
 		lblNewLabel.setBounds(185, 11, 83, 14);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Quedaron " + censo.manzanasSinCensar() +" manzanas sin censar");
+		JLabel lblNewLabel_1 = new JLabel("Quedaron " + censo.cantManzanasSinCensar() +" manzanas sin censar");
 		lblNewLabel_1.setBounds(140, 210, 179, 14);
 		frame.getContentPane().add(lblNewLabel_1);
 	}

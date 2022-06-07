@@ -69,9 +69,9 @@ public class MapInterface {
 		JMap.setDisplayPosition(coordenada, 14);//seteo el zoom y la pocision en la cual se va a ver el mapa
 		
 		// agrego un marcador de manzanas a censar
-		for (Integer vert : censo.get_SetCoodenadas()) {
-			MapMarker marker = new MapMarkerDot(censo.get_coodenadas().get(vert).getE1(),
-					censo.get_coodenadas().get(vert).getE2());
+		for (Integer vert : censo.manzanasACensar()) {
+			MapMarker marker = new MapMarkerDot(censo.getCoordenadas(vert).getE1(),
+					censo.getCoordenadas(vert).getE2());
 			marker.getStyle().setBackColor(Color.red);
 			marker.getStyle().setColor(Color.orange);
 			JMap.addMapMarker(marker);
@@ -87,7 +87,7 @@ public class MapInterface {
 				for (Censista c : _censo.keySet()) { //por cada censista
 					Color color = new Color((int)(Math.random() * 0x1000000));
 					for(Integer vertice : _censo.get(c)) { //recorro los vertices que visita
-						MapMarker Recorrido = new MapMarkerDot(censo.get_Coordenada(vertice).getE1(),censo.get_Coordenada(vertice).getE2());
+						MapMarker Recorrido = new MapMarkerDot(censo.getCoordenadas(vertice).getE1(),censo.getCoordenadas(vertice).getE2());
 						Recorrido.getStyle().setBackColor(color);
 						Recorrido.getStyle().setColor(color);
 						JMap.addMapMarker(Recorrido);

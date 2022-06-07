@@ -73,4 +73,8 @@ public class Censo {
 	public Tupla<Double, Double> getCoordenadas(Integer vertice) {
 		return _radioCensal.get_Coordenada(vertice);
 	}
+	
+	public Integer cantCensistasLibres() {
+		return _censistasDisponibles.size();
+	}
 }

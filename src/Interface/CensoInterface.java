@@ -32,6 +32,9 @@ public class CensoInterface {
 		});
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public CensoInterface(Censo c, boolean b) {
 		censo = c;
 		initialize(b);
@@ -64,8 +67,8 @@ public class CensoInterface {
 		lblNewLabel.setBounds(185, 11, 83, 14);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Quedaron " + censo.cantManzanasSinCensar() +" manzanas sin censar");
-		lblNewLabel_1.setBounds(127, 210, 203, 14);
+		JLabel lblNewLabel_1 = new JLabel("Quedaron " + censo.cantManzanasSinCensar() + " manzanas sin censar con " + censo.cantCensistasLibres() + " censistas libres");
+		lblNewLabel_1.setBounds(49, 210, 336, 14);
 		frame.getContentPane().add(lblNewLabel_1);
 	}
 }

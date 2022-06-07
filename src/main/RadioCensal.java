@@ -1,18 +1,58 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 public class RadioCensal {
 	private Grafo _radioCensal;
 	private Map<Integer, Tupla<Double, Double>> _coodenadas;
-	private ArrayList<Integer> manzanas;
 	private boolean[] _manzanasCensadas;
+
+	public RadioCensal() {
+		agregarCoordenadasJSON();
+		agregarAristasJSON();
+		_manzanasCensadas = new boolean[_radioCensal.tamano()];
+	}
 	
 	public RadioCensal(Integer manzanasACensar) {
 		_radioCensal = new Grafo(manzanasACensar);
-		_manzanasCensadas = new boolean[cantManzanasACensar()];
+		_manzanasCensadas = new boolean[manzanasACensar];
+	}
+
+	public void agregarCoordenadasJSON() {
+		_coodenadas = new HashMap<Integer, Tupla<Double, Double>>();
+		JSONArray coordenadasList = LeerArchivo.leerArchivoJSON("Coordenadas.json");
+		_radioCensal = new Grafo(coordenadasList.size());
+		for (Object jsonObject : coordenadasList) {
+			agregarCoordenadas((JSONObject) jsonObject);
+		}
+	}
+
+	private void agregarCoordenadas(JSONObject jsonObject) {
+		JSONObject info = (JSONObject) jsonObject.get("Vertice");
+		Long numero = (Long) info.get("numero");
+		double latitud = (Double) info.get("Latitud");
+		double longitud = (Double) info.get("Logitud");
+		Tupla<Double, Double> coord = new Tupla<Double, Double>(latitud, longitud);
+		_coodenadas.put(numero.intValue(), coord);
+	}
+
+	public void agregarAristasJSON() {
+		JSONArray grafoList = LeerArchivo.leerArchivoJSON("Grafo.json");
+		for (Object jsonObject : grafoList) {
+			GrafoInfo((JSONObject) jsonObject);
+		}
+	}
+
+	private void GrafoInfo(JSONObject jsonObject) {
+		Long vert1 = (Long) jsonObject.get("vert1");
+		Long vert2 = (Long) jsonObject.get("vert2");
+		_radioCensal.agregarArista(vert1.intValue(), vert2.intValue());
 	}
 
 	public ArrayList<Integer> recorridoParaCensista() { // devuelve las manzanas que censa x censista
@@ -23,7 +63,7 @@ public class RadioCensal {
 		recorrido = crearRecorrido(recorrido, origen, _radioCensal, _manzanasCensadas);
 		return recorrido;
 	}
-	
+
 	public static ArrayList<Integer> crearRecorrido(ArrayList<Integer> recorrido, Integer origen, Grafo radioCensal,
 			boolean[] manzanasCensadas) {
 		if (recorrido.size() == 3) {
@@ -42,7 +82,7 @@ public class RadioCensal {
 			return crearRecorrido(recorrido, manzanaActual, radioCensal, manzanasCensadas);
 		}
 	}
-	
+
 	private static Integer getManzanaVecinaNoCensada(boolean[] manzanasCensadas, Set<Integer> vecinos) {
 		Integer vertice = -1;
 		for (Integer vecino : vecinos) {
@@ -53,7 +93,7 @@ public class RadioCensal {
 		}
 		return vertice;
 	}
-	
+
 	public boolean todosVisitados() {
 		boolean ret = true;
 		for (boolean b : _manzanasCensadas) {
@@ -83,34 +123,34 @@ public class RadioCensal {
 		}
 		return ret;
 	}
-	
+
 	public void manzanasContiguas(Integer m1, Integer m2) {
 		_radioCensal.agregarArista(m1, m2);
 	}
-	
-	public ArrayList<Integer> manzanasACensar(){
+
+	public ArrayList<Integer> manzanasACensar() {
 		ArrayList<Integer> manzanas = new ArrayList<Integer>();
-		for(int i = 0; i < _radioCensal.tamano(); i++){
+		for (int i = 0; i < _radioCensal.tamano(); i++) {
 			manzanas.add(i);
 		}
 		return manzanas;
 	}
-	
+
 	public Integer manzanasSinCensar() {
 		Integer ret = 0;
-		for(boolean b : _manzanasCensadas) {
-			if(b == false) {
+		for (boolean b : _manzanasCensadas) {
+			if (b == false) {
 				ret++;
 			}
 		}
 		return ret;
 	}
-	
+
 	public Integer cantManzanasACensar() {
 		return manzanasACensar().size();
 	}
-	
-	public Tupla<Double, Double> get_Coordenada(Integer vertice){
+
+	public Tupla<Double, Double> get_Coordenada(Integer vertice) {
 		return _coodenadas.get(vertice);
 	}
 }

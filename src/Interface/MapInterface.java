@@ -15,7 +15,6 @@ import org.openstreetmap.gui.jmapviewer.interfaces.MapMarker;
 
 import main.Censista;
 import main.Censo;
-import main.Tupla;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;

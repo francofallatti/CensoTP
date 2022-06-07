@@ -31,6 +31,15 @@ public class Censo {
 		_radioCensal = new Grafo(manzanasACensar);
 		_censistasDisponibles = new ArrayList<Censista>();
 	}
+	
+	public ArrayList<Integer> manzanasACensar(){
+		ArrayList<Integer> manzanas = new ArrayList<Integer>();
+		for(int i = 0; i < _radioCensal.tamano(); i++){
+			manzanas.add(i);
+		}
+		return manzanas;
+	}
+	
 
 	public void manzanasContiguas(Integer m1, Integer m2) {
 		_radioCensal.agregarArista(m1, m2);

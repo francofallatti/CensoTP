@@ -54,24 +54,24 @@ public class Censo {
 		_censistasDisponibles.add(censista);
 	}
 
-	public ArrayList<Censista> get_censistasDisponibles() {
-		return _censistasDisponibles;
-	}
-
-	public Integer cantManzanasSinCensar() {
-		return _radioCensal.manzanasSinCensar();
-	}
-
 	public RadioCensal get_radioCensal() {
 		return _radioCensal;
+	}
+
+	public Tupla<Double, Double> getCoordenadas(Integer vertice) {
+		return _radioCensal.get_Coordenada(vertice);
 	}
 
 	public ArrayList<Integer> manzanasACensar() {
 		return _radioCensal.manzanasACensar();
 	}
+	
+	public Integer cantManzanasSinCensar() {
+		return _radioCensal.manzanasSinCensar();
+	}
 
-	public Tupla<Double, Double> getCoordenadas(Integer vertice) {
-		return _radioCensal.get_Coordenada(vertice);
+	public ArrayList<Censista> get_censistasDisponibles() {
+		return _censistasDisponibles;
 	}
 	
 	public Integer cantCensistasLibres() {

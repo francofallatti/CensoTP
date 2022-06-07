@@ -90,18 +90,20 @@ public class IngresoManualManzanas {
 				if (manzanas1.getSelectedItem().equals(manzanas2.getSelectedItem())) {
 					JOptionPane.showMessageDialog(frame, "Las manzanas contiguas deben ser distintas entre sí", "Error",
 							JOptionPane.ERROR_MESSAGE);
-				} if (manzanas1.getSelectedItem() == null || manzanas2.getSelectedItem() == null) {
-					JOptionPane.showMessageDialog(frame, "Debe cargar continuidad entre 2 (DOS) manzanas", "Error",
-							JOptionPane.ERROR_MESSAGE);
+				} else {
+					if (manzanas1.getSelectedItem() == null || manzanas2.getSelectedItem() == null) {
+						JOptionPane.showMessageDialog(frame, "Debe cargar continuidad entre 2 (DOS) manzanas", "Error",
+								JOptionPane.ERROR_MESSAGE);
+					} else {
+						censo.manzanasContiguas((Integer) manzanas1.getSelectedItem(),
+								(Integer) manzanas2.getSelectedItem());
+						JOptionPane.showMessageDialog(frame,
+								"La continuidad entra las manzanas " + manzanas1.getSelectedItem() + " y "
+										+ manzanas2.getSelectedItem() + " ha sido cargada correctamente!",
+								"", JOptionPane.INFORMATION_MESSAGE);
+					}
 				}
-				else {
-					censo.manzanasContiguas((Integer) manzanas1.getSelectedItem(),
-							(Integer) manzanas2.getSelectedItem());
-					JOptionPane.showMessageDialog(frame,
-							"La continuidad entra las manzanas " + manzanas1.getSelectedItem() + " y "
-									+ manzanas2.getSelectedItem() + " ha sido cargada correctamente!",
-							"", JOptionPane.INFORMATION_MESSAGE);
-				}
+
 			}
 		});
 		btnNewButton.setBounds(166, 151, 89, 23);

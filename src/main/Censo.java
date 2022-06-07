@@ -30,6 +30,7 @@ public class Censo {
 	public Censo(Integer manzanasACensar) {
 		_radioCensal = new Grafo(manzanasACensar);
 		_censistasDisponibles = new ArrayList<Censista>();
+		_manzanasCensadas = new boolean[manzanasACensar];
 	}
 	
 	public ArrayList<Integer> manzanasACensar(){
@@ -59,7 +60,7 @@ public class Censo {
 
 	private Map<Censista, ArrayList<Integer>> asigarCensistas() {
 		Map<Censista, ArrayList<Integer>> _censistasAsignados = new HashMap<Censista, ArrayList<Integer>>();
-		while (!todosVisitados()) {
+		while (!todosVisitados() && _censistasDisponibles.size() != 0) {
 			Integer censistaAleatorio = new Random().nextInt(_censistasDisponibles.size());
 			Censista censistaElegido = _censistasDisponibles.get(censistaAleatorio);
 			//System.out.println(censistaElegido.getNombre());
@@ -89,6 +90,16 @@ public class Censo {
 			}
 		}
 		return vertice;
+	}
+	
+	public Integer manzanasSinCensar() {
+		Integer ret = 0;
+		for(boolean b : _manzanasCensadas) {
+			if(b == false) {
+				ret++;
+			}
+		}
+		return ret;
 	}
 
 	private ArrayList<Integer> recorridoParaCensista() { // devuelve las manzanas que censa x censista

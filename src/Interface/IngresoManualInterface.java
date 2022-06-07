@@ -148,6 +148,10 @@ public class IngresoManualInterface {
 					JOptionPane.showMessageDialog(frame, "Debe cargar las manzanas a censar!", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				}
+				if(m.getSize() == 0) {
+					JOptionPane.showMessageDialog(frame, "Debe cargar al menos un censista", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				}
 				else {
 					IngresoManualManzanas im = new IngresoManualManzanas(censo, true);
 					frame.setVisible(false);

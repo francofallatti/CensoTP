@@ -1,11 +1,16 @@
 package Interface;
 
 import java.awt.EventQueue;
+import java.util.ArrayList;
+import java.util.Map;
 
 import javax.swing.JFrame;
 
+import main.Censista;
 import main.Censo;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.BorderLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
@@ -15,6 +20,7 @@ public class CensoInterface {
 	private JFrame frame;
 	private Censo censo;
 	private JTable table;
+	private DefaultTableModel modelo;
 
 	/**
 	 * Launch the application.
@@ -49,15 +55,27 @@ public class CensoInterface {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		Map<Censista, ArrayList<Integer>> resultado = censo.censar();
+		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 50, 389, 183);
+		scrollPane.setBounds(20, 50, 389, 137);
 		frame.getContentPane().add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
+		modelo = new DefaultTableModel();
+		modelo.addColumn("Censista");
+		modelo.addColumn("Manzanas a censar");
+		for(Censista c : resultado.keySet()) {
+			modelo.addRow(new String[] {c.getNombre(), resultado.get(c).toString()});
+		}
 		
 		JLabel lblNewLabel = new JLabel("CENSO 2022");
 		lblNewLabel.setBounds(185, 11, 83, 14);
 		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Quedaron " + censo.manzanasSinCensar() +" manzanas sin censar");
+		lblNewLabel_1.setBounds(140, 210, 179, 14);
+		frame.getContentPane().add(lblNewLabel_1);
 	}
 }

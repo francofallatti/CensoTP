@@ -100,7 +100,8 @@ public class IngresoManualManzanas {
 		JButton btnNewButton_1 = new JButton("Comenzar censo!");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				CensoInterface ci = new CensoInterface(censo, true);
+				frame.setVisible(false);
 			}
 		});
 		btnNewButton_1.setBounds(264, 227, 148, 23);

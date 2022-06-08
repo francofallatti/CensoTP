@@ -1,7 +1,6 @@
 package Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 import org.json.simple.JSONArray;
 import org.junit.Test;
@@ -11,17 +10,17 @@ import main.LeerArchivo;
 public class LeerArchivoTest {
 	@Test
 	public void lenghtTest() {
-		JSONArray CensistaList =LeerArchivo.leerArchivoJSON("Censistas.json");
-		assertEquals(15, CensistaList.size());
+		JSONArray censistaList =LeerArchivo.leerArchivoJSON("Censistas.json");
+		assertEquals(15, censistaList.size());
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void nullException() {
-		assertNull(LeerArchivo.leerArchivoJSON(null));
+		LeerArchivo.leerArchivoJSON(null);
 	}
 	
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void vacioTest() {
-		assertNull(LeerArchivo.leerArchivoJSON(""));
+		LeerArchivo.leerArchivoJSON("");
 	}
 }

@@ -10,6 +10,9 @@ import org.json.simple.parser.ParseException;
 
 public class LeerArchivo {
 	public static JSONArray leerArchivoJSON(String archivo) {
+		if (archivo == "" || archivo ==  null) {
+			throw new IllegalArgumentException("El archivo necesita un nombre");
+		}
 		JSONParser jsonParser = new JSONParser();
 		try (FileReader reader = new FileReader(archivo)) {
 			Object obj = jsonParser.parse(reader);

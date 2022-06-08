@@ -22,8 +22,6 @@ public class Censo {
 		_censistasDisponibles = new ArrayList<Censista>();
 	}
 
-	
-
 	public void agregarCensista(String nombre) {
 		if (nombre == null || nombre == "") {
 			throw new IllegalArgumentException("El censista necesita un nombre");
